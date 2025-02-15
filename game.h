@@ -14,7 +14,7 @@ typedef struct {
 void print_board(board_t game);
 bool is_game_over(board_t game);
 
-void gameplay(board_t game, char C);
+void gameplay(board_t *game, char C);
 
 
 #endif // Game TicTacToe

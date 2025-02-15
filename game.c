@@ -29,7 +29,7 @@ bool check_win(const board_t game) {
 }
 
 bool is_board_full(board_t game){
-    for(int i = 0; i <= 9; i++){
+    for(int i = 0; i < 9; i++){
         if(game.cases[i] == ' '){
             return false;
         }
@@ -38,11 +38,7 @@ bool is_board_full(board_t game){
 }
 
 bool is_case_empty(board_t game, int n){
-    if(game.cases[n]==' '){
-        return true;
-    }else{
-        return false;
-    }
+    return game.cases[n] == ' ';
 }
 
 bool is_game_over(board_t game){
@@ -54,16 +50,15 @@ bool is_game_over(board_t game){
 }
 
 
-void gameplay(board_t game, char C){
-    bool HEU;
-    do{
+void gameplay(board_t *game, char C){
+    while (true) {
         int choice;
         scanf("%d", &choice);
-        if(is_case_empty(game, choice) == true){
-            game.cases[choice] = C;
+        if (is_case_empty(*game, choice)) {
+            game->cases[choice] = C;
             break;
-        }else{
-            printf("Case already used, one more time");
+        } else {
+            printf("Case already used, one more time\n");
         }
-    } while(HEU);
+    }
 }
