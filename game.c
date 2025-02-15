@@ -4,19 +4,28 @@
 #include <stdbool.h>
 
 void print_board(board_t game){
-    printf("%c | %c | %c \n ----------- \n %c | %c | %c \n ----------- \n %c | %c | %c", game.cases[0], game.cases[1], game.cases[2], game.cases[3], game.cases[4], game.cases[5], game.cases[6], game.cases[7], game.cases[8],);
+    printf("%c | %c | %c \n ----------- \n %c | %c | %c \n ----------- \n %c | %c | %c", game.cases[0], game.cases[1], game.cases[2], game.cases[3], game.cases[4], game.cases[5], game.cases[6], game.cases[7], game.cases[8]);
 }
 
-bool check_win(board_t game){
-    if(game.cases[0] == game.cases[1] == game.cases[2] || game.cases[3] == game.cases[4] == game.cases[5] || game.cases[6] == game.cases[7] == game.cases[8]){
+bool check_win(const board_t game) {
+    // Check rows
+    if ((game.cases[0] == game.cases[1] && game.cases[1] == game.cases[2] && game.cases[0] != ' ') ||
+        (game.cases[3] == game.cases[4] && game.cases[4] == game.cases[5] && game.cases[3] != ' ') ||
+        (game.cases[6] == game.cases[7] && game.cases[7] == game.cases[8] && game.cases[6] != ' ')) {
         return true;
-    }else if(game.cases[0] == game.cases[3] == game.cases[6] || game.cases[1] == game.cases[4] == game.cases[7] || game.cases[2] == game.cases[5] == game.cases[8]){
-        return true;
-    }else if(game.cases[0] == game.cases[4] == game.cases[8] || game.cases[6] == game.cases[4] == game.cases[2]){
-        return true;
-    }else{
-        return false;
     }
+    // Check columns
+    if ((game.cases[0] == game.cases[3] && game.cases[3] == game.cases[6] && game.cases[0] != ' ') ||
+        (game.cases[1] == game.cases[4] && game.cases[4] == game.cases[7] && game.cases[1] != ' ') ||
+        (game.cases[2] == game.cases[5] && game.cases[5] == game.cases[8] && game.cases[2] != ' ')) {
+        return true;
+    }
+    // Check diagonals
+    if ((game.cases[0] == game.cases[4] && game.cases[4] == game.cases[8] && game.cases[0] != ' ') ||
+        (game.cases[2] == game.cases[4] && game.cases[4] == game.cases[6] && game.cases[2] != ' ')) {
+        return true;
+    }
+    return false;
 }
 
 bool is_board_full(board_t game){
@@ -36,3 +45,10 @@ bool is_game_over(board_t game){
         return false;
     }
 }
+
+void player_choice(board_t game, char C){
+    int choice;
+    scanf("%d", &choice);
+    game.cases[choice] = C;
+}
+

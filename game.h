@@ -7,7 +7,7 @@
 
 
 typedef struct {
-    char cases[9]
+    char cases[9];
 } board_t;
 
 void print_board(board_t game);
