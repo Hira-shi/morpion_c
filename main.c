@@ -2,12 +2,10 @@
 
 #include "game.h"
 
-board_t new_game(board_t game){
+void new_game(board_t *game){
     for(int i = 0; i < 9; i++){
-        game.cases[i] = ' ';
+        game->cases[i] = ' ';
     }
-
-    return game;
 }
 
 
@@ -18,23 +16,24 @@ int main(){
     printf("Welcome to the game");
 
     bool remake = true;
-    new_game(game);
+    new_game(&game);
     print_board(game);
 
     do{
         do{
-            gameplay(game, 'X');
+            gameplay(&game, 'X');
             print_board(game);
-            gameplay(game, 'O');
+            gameplay(&game, 'O');
             print_board(game);
-        }while(is_game_over(game));
+        }while(!is_game_over(game));
 
         char answer;
-        scanf("Do you want to replay ? (y/n): %c", answer);
+        printf("Do you want to replay ? (y/n): ");
+        scanf(" %c", answer);
         if(answer != 'y'){
             remake = false;
         }else{
-            new_game(game);
+            new_game(&game);
         }
     }while(remake);
 
