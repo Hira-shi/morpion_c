@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stdbool.h>
+
 #include "game.h"
 
 board_t new_game(board_t game){
@@ -22,10 +22,12 @@ int main(){
     print_board(game);
 
     do{
-        gameplay(game, 'X');
-        print_board(game);
-        gameplay(game, 'O');
-        print_board(game);
+        do{
+            gameplay(game, 'X');
+            print_board(game);
+            gameplay(game, 'O');
+            print_board(game);
+        }while(is_game_over(game));
 
         char answer;
         scanf("Do you want to replay ? (y/n): %c", answer);

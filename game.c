@@ -1,7 +1,7 @@
 #include "game.h"
 #include <stdio.h>
 
-#include <stdbool.h>
+
 
 void print_board(board_t game){
     printf("%c | %c | %c \n ----------- \n %c | %c | %c \n ----------- \n %c | %c | %c", game.cases[0], game.cases[1], game.cases[2], game.cases[3], game.cases[4], game.cases[5], game.cases[6], game.cases[7], game.cases[8]);
@@ -35,7 +35,14 @@ bool is_board_full(board_t game){
         }
     }
     return true;
+}
 
+bool is_case_empty(board_t game, int n){
+    if(game.cases[n]==' '){
+        return true;
+    }else{
+        return false;
+    }
 }
 
 bool is_game_over(board_t game){
@@ -46,9 +53,17 @@ bool is_game_over(board_t game){
     }
 }
 
-void player_choice(board_t game, char C){
-    int choice;
-    scanf("%d", &choice);
-    game.cases[choice] = C;
-}
 
+void gameplay(board_t game, char C){
+    bool HEU;
+    do{
+        int choice;
+        scanf("%d", &choice);
+        if(is_case_empty(game, choice) == true){
+            game.cases[choice] = C;
+            break;
+        }else{
+            printf("Case already used, one more time");
+        }
+    } while(HEU);
+}
