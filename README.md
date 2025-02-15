@@ -1,2 +1,3 @@
 # morpion_c
-La même mais en c
+
+Prog vite fait en une journée
