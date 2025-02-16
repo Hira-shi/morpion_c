@@ -9,6 +9,7 @@ void new_game(board_t *game){
 }
 
 
+
 int main(){
 
     board_t game;
@@ -29,7 +30,7 @@ int main(){
 
         char answer;
         printf("Do you want to replay ? (y/n): ");
-        scanf(" %c", answer);
+        scanf("%c", &answer);
         if(answer != 'y'){
             remake = false;
         }else{
