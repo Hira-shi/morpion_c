@@ -4,7 +4,7 @@
 
 
 void print_board(board_t game){
-    printf("%c | %c | %c \n ----------- \n %c | %c | %c \n ----------- \n %c | %c | %c", game.cases[0], game.cases[1], game.cases[2], game.cases[3], game.cases[4], game.cases[5], game.cases[6], game.cases[7], game.cases[8]);
+    printf("\n\n %c | %c | %c \n ----------- \n %c | %c | %c \n ----------- \n %c | %c | %c", game.cases[0], game.cases[1], game.cases[2], game.cases[3], game.cases[4], game.cases[5], game.cases[6], game.cases[7], game.cases[8]);
 }
 
 bool check_win(const board_t game) {
@@ -53,12 +53,13 @@ bool is_game_over(board_t game){
 void gameplay(board_t *game, char C){
     while (true) {
         int choice;
+        printf("Choose a case between 1 and 9 : ")
         scanf("%d", &choice);
-        if (is_case_empty(*game, choice)) {
-            game->cases[choice] = C;
+        if (is_case_empty(*game, choice - 1)) {
+            game->cases[choice - 1] = C;
             break;
         } else {
-            printf("Case already used, one more time\n");
+            printf("Case already used or inexistant, one more time\n");
         }
     }
 }
